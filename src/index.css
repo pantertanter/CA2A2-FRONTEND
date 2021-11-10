@@ -22,11 +22,11 @@ ul.header {
  
  ul.header li { float: left;}
 
- ul.header li.header_right {
+ ul.header div.header_right {
    float: right;
  }
  
- ul.header li a {
+ ul.header li a, ul.header li span {
   display: block;
   color: white;
   text-align: center;

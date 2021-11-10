@@ -18,22 +18,25 @@ import Logout from "./components/Logout";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const initUser = { username: "" };
+  const [user, setUser] = useState(initUser);
   const navigate = useNavigate();
 
   const logout = () => {
     loginFacade.logout()
-    setLoggedIn(false)
+    setLoggedIn(false);
+    setUser(initUser);
     navigate("/");
   }
   const login = (user, pass) => {
-    loginFacade.login(user, pass)
+    loginFacade.login(user, pass, (data) => setUser({ username: data.username }))
       .then(res => setLoggedIn(true));
     navigate("/");
   }
 
   return (
     <div>
-      <Header loggedIn={loggedIn} logout={logout} />
+      <Header loggedIn={loggedIn} user={user} />
 
       <Routes>
         <Route path="/" element={<Home />} />

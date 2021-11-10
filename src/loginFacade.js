@@ -18,11 +18,14 @@ function loginFacade() {
         localStorage.removeItem("jwtToken");
     }
 
-    const login = (user, password) => {
+    const login = (user, password, callback) => {
         const options = makeOptions("POST", true, { username: user, password: password });
         return fetch(URL, options)
             .then(handleHttpErrors)
-            .then(res => { setToken(res.token) })
+            .then(res => {
+                setToken(res.token);
+                callback(res);
+            });
     }
 
     const fetchData = () => {
