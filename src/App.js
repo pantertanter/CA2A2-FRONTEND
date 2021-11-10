@@ -12,9 +12,9 @@ import Page3 from "./components/Page3";
 import About from "./components/About";
 import NoMatch from "./components/NoMatch";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 import { useState } from "react";
 import loginFacade from "./loginFacade";
-import Logout from "./components/Logout";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -30,8 +30,10 @@ function App() {
   }
   const login = (user, pass) => {
     loginFacade.login(user, pass, (data) => setUser({ username: data.username }))
-      .then(res => setLoggedIn(true));
-    navigate("/");
+      .then(res => {
+        setLoggedIn(true);
+        navigate("/");
+      });
   }
 
   return (
