@@ -1,7 +1,8 @@
 import {
-  BrowserRouter as Router,
+  Navigate,
   Routes,
   Route,
+  useNavigate
 } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -13,21 +14,26 @@ import NoMatch from "./components/NoMatch";
 import Login from "./components/Login";
 import { useState } from "react";
 import loginFacade from "./loginFacade";
+import Logout from "./components/Logout";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const logout = () => {
     loginFacade.logout()
     setLoggedIn(false)
+    navigate("/");
   }
   const login = (user, pass) => {
     loginFacade.login(user, pass)
       .then(res => setLoggedIn(true));
+    navigate("/");
   }
+
   return (
     <div>
-      <Header />
+      <Header loggedIn={loggedIn} logout={logout} />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -36,6 +42,7 @@ function App() {
         <Route path="/page3/*" element={<Page3 />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login login={login} />} />
+        <Route path="/logout" element={<Logout logout={logout} />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>
