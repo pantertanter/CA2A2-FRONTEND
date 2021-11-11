@@ -4,9 +4,6 @@ function Header({ loggedIn, user }) {
     return (
         <ul className="header">
             <li><NavLink activeClassName="active" to="/" end>Home</NavLink></li>
-            <li><NavLink activeClassName="active" to="/page1">Page 1</NavLink></li>
-            <li><NavLink activeClassName="active" to="/page2">Page 2</NavLink></li>
-            <li><NavLink activeClassName="active" to="/page3">Page 3</NavLink></li>
             <li><NavLink activeClassName="active" to="/about">About</NavLink></li>
             <div className="header_right">
                 {loggedIn

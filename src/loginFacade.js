@@ -1,5 +1,5 @@
 import { SERVER_URL } from "./settings";
-import { handleHttpErrors } from "./httpUtils";
+import handleHttpErrors from "./utils/handleHttpErrors";
 
 function loginFacade() {
     const URL = `${SERVER_URL}/api/login`
@@ -11,8 +11,7 @@ function loginFacade() {
         return localStorage.getItem('jwtToken')
     }
     const loggedIn = () => {
-        const loggedIn = getToken() != null;
-        return loggedIn;
+        return getToken() != null;
     }
     const logout = () => {
         localStorage.removeItem("jwtToken");
