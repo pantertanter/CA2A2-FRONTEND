@@ -35,7 +35,6 @@ function App() {
   return (
     <div>
       <Header loggedIn={loggedIn} user={user} />
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
