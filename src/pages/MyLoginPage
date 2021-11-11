@@ -1,0 +1,49 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useToken from '@auth/useToken';
+import { useHttp } from '@util/useHttp';
+
+export const LogInPage = () => {
+    const [token, setToken] = useToken();
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const [emailValue, setEmailValue] = useState('');
+    const [passwordValue, setPasswordValue] = useState('');
+
+    const navigate = useNavigate();
+    const http = useHttp();
+
+    async function onLogInClicked() {
+        const response = await http.post("/login", {
+            email: emailValue,
+            password: passwordValue,
+        })
+        if (response.ok) {
+            setToken(res.data);
+            navigate("/");
+        }
+        else {
+            setErrorMessage(res.status + ": " + JSON.stringify(res.fullError));
+        }
+    }
+
+    return (
+        <>
+            {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
+            <input
+                value={emailValue}
+                onChange={e => setEmailValue(e.target.value)}
+                placeholder="someone@gmail.com" />
+            <input
+                type="password"
+                value={passwordValue}
+                onChange={e => setPasswordValue(e.target.value)}
+                placeholder="password" />
+            <button
+                disabled={!emailValue || !passwordValue}
+                onClick={onLogInClicked}>Log In</button>
+            <button onClick={() => navigate('/forgot-password')}>Forgot your password?</button>
+            <button onClick={() => navigate('/signup')}>Don't have an account? Sign Up</button>
+        </>
+    );
+}

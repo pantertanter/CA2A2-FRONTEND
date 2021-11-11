@@ -1,5 +1,5 @@
-import { SERVER_URL } from "./settings";
-import handleHttpErrors from "./utils/handleHttpErrors";
+import { SERVER_URL } from "../settings";
+import handleHttpErrors from "../utils/handleHttpErrors";
 
 function loginFacade() {
     const URL = `${SERVER_URL}/api/login`

@@ -11,7 +11,7 @@ import NoMatchPage from "./pages/NoMatchPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
 import { useState } from "react";
-import loginFacade from "./loginFacade";
+import loginFacade from "./auth/loginFacade";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);

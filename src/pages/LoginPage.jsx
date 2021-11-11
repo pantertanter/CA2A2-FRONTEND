@@ -2,31 +2,40 @@ import { useState } from "react";
 import { Button, Col, Container, Form, FormControl, Row } from "react-bootstrap";
 
 function Login({ login }) {
-    const init = { username: "", password: "" };
-    const [credentials, setCredentials] = useState(init);
+    const [username, setUsernameValue] = useState();
+    const [password, setPasswordValue] = useState();
 
-    const performLogin = (evt) => {
+    const clickLogin = (evt) => {
         evt.preventDefault();
-        login(credentials.username, credentials.password);
-    }
-    const onChange = (evt) => {
-        setCredentials({ ...credentials, [evt.target.id]: evt.target.value })
+        login(username, password);
     }
 
     // the bootstrap container stuff should probably be at a higher level in the app.
     // I'm also not 100% on all the grid stuff.
     return (
-        <Container>
+        <div className="container-lg">
             <Row>
                 <Col sm={6}>
-                    <Form className="mt-3" onChange={onChange} >
-                        <FormControl className="mb-3" type="text" placeholder="Username" id="username" />
-                        <FormControl className="mb-3" type="text" placeholder="Password" id="password" />
-                        <Button className="mb-3" onClick={performLogin}>Login</Button>
+                    <Form className="mt-3" >
+                        <FormControl
+                            onChange={e => setUsernameValue(e.target.value)}
+                            className="mb-3"
+                            type="text"
+                            placeholder="Username"
+                            id="username" />
+
+                        <FormControl
+                            onChange={e => setPasswordValue(e.target.value)}
+                            className="mb-3"
+                            type="text"
+                            placeholder="Password"
+                            id="password" />
+
+                        <Button className="mb-3" onClick={clickLogin}>Login</Button>
                     </Form>
                 </Col>
             </Row>
-        </Container>
+        </div>
     );
 }
 
