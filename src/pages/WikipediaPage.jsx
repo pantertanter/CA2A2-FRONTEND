@@ -17,7 +17,7 @@ function WikipediaPage() {
                     <h2>{a.title}</h2>
                     <p><i>{a.description}</i></p>
                     <p>{a.extract}</p>
-                    <a href={a.url}>{a.url}</a>
+                    <a href={a.url} target="_blank" rel="noopener noreferrer">{a.url}</a>
                 </Col>
                 <Col>
                     <img src={t.source} width={t.width} height={t.height} />
