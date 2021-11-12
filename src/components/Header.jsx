@@ -12,7 +12,7 @@ function Header({ loggedIn, user }) {
             <div className="header_right">
                 {loggedIn
                     ? <div>
-                        <li><span>Hello, {user.username}!</span></li>   {/* It's only a span to avoid bootstrap's <p> styling messing up the header */}
+                        <li><span>Hello, {user.username}! Roles: {user.roles.join(", ")}</span></li>   {/* It's only a span to avoid bootstrap's <p> styling messing up the header */}
                         <li><NavLink to="/logout">Sign out</NavLink></li>
                     </div>
                     : <li><NavLink to="/login">Sign in</NavLink></li>

@@ -16,15 +16,34 @@ function loginFacade() {
     const logout = () => {
         localStorage.removeItem("jwtToken");
     }
+    const getUser = () => {
+        const token = getToken();
+        // could define the init user somewhere.
+        return token ? getUserFromPayload(getPayloadFromToken(token)) : { username: "", roles: [] };
+    }
 
-    const login = (user, password, callback) => {
+    const login = (user, password, setUser) => {
         const options = makeOptions("POST", true, { username: user, password: password });
         return fetch(URL, options)
             .then(handleHttpErrors)
             .then(res => {
                 setToken(res.token);
-                callback(res);
+                // could just call getUser but getting the token again seems redundant when we already have it.
+                const user = getUserFromPayload(getPayloadFromToken(res.token));
+                setUser(user);
             });
+    }
+
+    // could combine getUser and getPayload.
+    function getPayloadFromToken(token) {
+        const encodedPayload = token.split('.')[1];
+        return JSON.parse(Buffer.from(encodedPayload, 'base64'));
+    }
+
+    function getUserFromPayload(payload) {
+        const { username, roles } = payload;
+        const rolesArray = roles.split(",");
+        return { username: username, roles: rolesArray };
     }
 
     const fetchData = () => {
@@ -57,6 +76,7 @@ function loginFacade() {
         loggedIn,
         login,
         logout,
+        getUser,
         fetchData
     }
 }

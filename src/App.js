@@ -14,8 +14,9 @@ import { useState } from "react";
 import loginFacade from "./auth/loginFacade";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState();
+  // I don't know how this will work with token expiration. You might just stay logged in but can't contact backend.
+  const [loggedIn, setLoggedIn] = useState(loginFacade.loggedIn());
+  const [user, setUser] = useState(loginFacade.getUser());
   const navigate = useNavigate();
 
   const logout = () => {
@@ -25,7 +26,7 @@ function App() {
     navigate("/");
   }
   const login = (user, pass) => {
-    loginFacade.login(user, pass, (data) => setUser({ username: data.username }))   // could also just send setUser
+    loginFacade.login(user, pass, setUser)   // could also just send setUser
       .then(res => {
         setLoggedIn(true);
         navigate("/");
