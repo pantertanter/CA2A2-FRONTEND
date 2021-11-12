@@ -5,13 +5,25 @@ function loginFacade() {
     const URL = `${SERVER_URL}/api/login`
 
     const setToken = (token) => {
-        localStorage.setItem('jwtToken', token)
+        if (!token) logout();
+        else localStorage.setItem('jwtToken', token);
     }
+
     const getToken = () => {
-        return localStorage.getItem('jwtToken')
+        const token = localStorage.getItem('jwtToken');
+        if (!token) return null;
+        const { exp } = getPayloadFromToken(token);
+        if (exp * 1000 > Date.now()) {
+            console.log("Token expires in ", Math.round((exp * 1000 - Date.now()) / 1000 / 60), " min");
+            return token;
+        } else {
+            console.log("Token expired!");
+            setToken(null);
+            return null;
+        }
     }
     const loggedIn = () => {
-        return getToken() != null;
+        return !!getToken();
     }
     const logout = () => {
         localStorage.removeItem("jwtToken");
@@ -31,7 +43,6 @@ function loginFacade() {
             });
     }
 
-    // could combine getUser and getPayload.
     function getPayloadFromToken(token) {
         const encodedPayload = token.split('.')[1];
         return JSON.parse(Buffer.from(encodedPayload, 'base64'));
