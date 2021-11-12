@@ -22,15 +22,12 @@ function loginFacade() {
         return token ? getUserFromPayload(getPayloadFromToken(token)) : { username: "", roles: [] };
     }
 
-    const login = (user, password, setUser) => {
+    const login = (user, password) => {
         const options = makeOptions("POST", true, { username: user, password: password });
         return fetch(URL, options)
             .then(handleHttpErrors)
             .then(res => {
                 setToken(res.token);
-                // could just call getUser but getting the token again seems redundant when we already have it.
-                const user = getUserFromPayload(getPayloadFromToken(res.token));
-                setUser(user);
             });
     }
 

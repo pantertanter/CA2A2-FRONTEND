@@ -26,8 +26,9 @@ function App() {
     navigate("/");
   }
   const login = (user, pass) => {
-    loginFacade.login(user, pass, setUser)   // could also just send setUser
+    loginFacade.login(user, pass)
       .then(res => {
+        setUser(loginFacade.getUser())
         setLoggedIn(true);
         navigate("/");
       });
