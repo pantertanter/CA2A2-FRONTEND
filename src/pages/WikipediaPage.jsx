@@ -29,9 +29,9 @@ export default function WikipediaPage() {
     }
 
     return (
-        <div>
+        <>
             <p><i>These are fetched sequentially.</i></p>
             {articles && articles.map(a => <WikipediaArticle key={a.pageid} article={a} />)}
-        </div>
+        </>
     );
 }

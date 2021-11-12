@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export default function Header({ loggedIn, user }) {
+export default function NavBar({ loggedIn, user }) {
 
     function isActive({ isActive }) {
         return isActive ? "active" : "";
@@ -23,7 +23,7 @@ export default function Header({ loggedIn, user }) {
             <div className="header_right">
                 {loggedIn
                     ? <div>
-                        <li><span>Hello, {user.username}! Roles: {user.roles.join(", ")}</span></li>   {/* It's only a span to avoid bootstrap's <p> styling messing up the header */}
+                        <li><span className="userInfo">{user.username}</span> <span className="badge bg-primary rounded-pill">{user.roles.join(", ")}</span></li>   {/* It's only a span to avoid bootstrap's <p> styling messing up the header */}
                         <li><NavLink to="/logout">Sign out</NavLink></li>
                     </div>
                     : <li><NavLink className={isActive} to="/login">Sign in</NavLink></li>

@@ -10,7 +10,7 @@ export default function LoginForm({ login }) {
         login(username, password);
     }
 
-    return <Form className="mt-3" >
+    return <Form className="loginForm mt-3 m-auto" >
         <FormControl
             onChange={e => setUsernameValue(e.target.value)}
             className="mb-3"
@@ -21,10 +21,10 @@ export default function LoginForm({ login }) {
         <FormControl
             onChange={e => setPasswordValue(e.target.value)}
             className="mb-3"
-            type="text"
+            type="password"
             placeholder="Password"
             id="password" />
 
-        <Button className="mb-3" onClick={clickLogin}>Login</Button>
+        <Button className="d-block btn-lg mb-3 mx-auto" onClick={clickLogin}>Login</Button>
     </Form>
 }

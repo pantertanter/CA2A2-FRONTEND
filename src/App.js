@@ -1,8 +1,10 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Container } from "react-bootstrap";
 import userFacade from "./auth/userFacade";
-import Header from "./components/Header";
-
+import NavBar from "./components/NavBar";
+import Hero from "./components/Hero";
+// PAGES:
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import WikipediaPage from "./pages/WikipediaPage";
@@ -10,6 +12,7 @@ import DadJokePage from "./pages/DadJokePage";
 import NoMatchPage from "./pages/NoMatchPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
+
 
 export default function App() {
   const navigate = useNavigate();
@@ -36,17 +39,20 @@ export default function App() {
   }
 
   return (
-    <div>
-      <Header loggedIn={loggedInState} user={userState} />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/wikipedia" element={<WikipediaPage />} />
-        <Route path="/dadjokes" element={<DadJokePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/login" element={<LoginPage login={loginProtocol} />} />
-        <Route path="/logout" element={<LogoutPage logout={logoutProtocol} />} />
-        <Route path="*" element={<NoMatchPage />} />
-      </Routes>
-    </div>
+    <Container fluid="sm" className="headerMenuContent">
+      <Hero />
+      <NavBar loggedIn={loggedInState} user={userState} />
+      <Container className="pageContent pt-3 pb-3" fluid="sm">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/wikipedia" element={<WikipediaPage />} />
+          <Route path="/dadjokes" element={<DadJokePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/login" element={<LoginPage login={loginProtocol} />} />
+          <Route path="/logout" element={<LogoutPage logout={logoutProtocol} />} />
+          <Route path="*" element={<NoMatchPage />} />
+        </Routes>
+      </Container>
+    </Container>
   );
 }
