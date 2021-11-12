@@ -17,11 +17,11 @@ export default function Header({ loggedIn, user }) {
             <li><NavLink
                 className={isActive}
                 to="/dadjokes">Dad jokes</NavLink></li>
-            {user != null && user.roles.includes("user") &&
+            {loggedIn && user.roles.includes("user") &&
                 <li><NavLink
                     className={isActive}
                     to="/user">User page</NavLink></li>}
-            {user != null && user.roles.includes("admin") &&
+            {loggedIn && user.roles.includes("admin") &&
                 <li><NavLink
                     className={isActive}
                     to="/admin">Admin page</NavLink></li>}
