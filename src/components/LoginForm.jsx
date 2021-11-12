@@ -5,12 +5,12 @@ export default function LoginForm({ login }) {
     const [username, setUsernameValue] = useState();
     const [password, setPasswordValue] = useState();
 
-    function clickLogin(event) {
+    function submitLogin(event) {
         event.preventDefault();
         login(username, password);
     }
 
-    return <Form className="loginForm mt-3 m-auto" >
+    return <Form className="loginForm mt-3 m-auto" onSubmit={submitLogin}>
         <FormControl
             onChange={e => setUsernameValue(e.target.value)}
             className="mb-3"
@@ -25,6 +25,6 @@ export default function LoginForm({ login }) {
             placeholder="Password"
             id="password" />
 
-        <Button className="d-block btn-lg mb-3 mx-auto" onClick={clickLogin}>Login</Button>
+        <Button type="submit" className="d-block btn-lg mb-3 mx-auto">Login</Button>
     </Form>
 }
