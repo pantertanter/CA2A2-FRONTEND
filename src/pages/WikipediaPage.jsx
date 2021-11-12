@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import apiFacade from "../apiFacade";
 import { Col, Row } from "react-bootstrap";
 
 function WikipediaPage() {
     const [articles, setArticles] = useState();
+    const mounted = useRef(true);
 
     useEffect(() => {
-        apiFacade.fetchWikipedia(setArticles);
+        apiFacade.fetchWikipedia(setArticles, mounted);
+        return () => mounted.current = false;
     }, []);
 
     function WikipediaArticle({ article: a }) {

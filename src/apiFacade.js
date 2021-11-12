@@ -1,12 +1,12 @@
 import { SERVER_URL } from "./settings";
 import fetchData from "./utils/fetchData";
 
-function fetchWikipedia(setArticles) {
-    fetchData(`${SERVER_URL}/api/info/sequential`, "GET", setArticles);
+function fetchWikipedia(setArticles, mounted) {
+    fetchData(`${SERVER_URL}/api/info/sequential`, "GET", setArticles, mounted);
 }
 
-function fetchDadJokes(setJokes) {
-    fetchData(`${SERVER_URL}/api/info/parallel`, "GET", setJokes);
+function fetchDadJokes(setJokes, mounted) {
+    fetchData(`${SERVER_URL}/api/info/parallel`, "GET", setJokes, mounted);
 }
 
 const apiFacade = {

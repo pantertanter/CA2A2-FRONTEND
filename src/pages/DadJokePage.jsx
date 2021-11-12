@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import apiFacade from "../apiFacade";
 
 function DadJokePage() {
     const [jokes, setJokes] = useState();
+    const mounted = useRef(true);
 
     useEffect(() => {
-        apiFacade.fetchDadJokes(setJokes);
+        apiFacade.fetchDadJokes(setJokes, mounted);
+        return () => mounted.current = false;
     }, []);
 
     function DadJoke({ joke: j }) {
