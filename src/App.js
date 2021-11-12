@@ -7,10 +7,11 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import WikipediaPage from "./pages/WikipediaPage";
 import DadJokePage from "./pages/DadJokePage";
+import UserPage from "./pages/UserPage";
+import AdminPage from "./pages/AdminPage";
 import NoMatchPage from "./pages/NoMatchPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
-import UserPage from "./pages/UserPage";
 
 export default function App() {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ export default function App() {
         <Route path="/wikipedia" element={<WikipediaPage />} />
         <Route path="/dadjokes" element={<DadJokePage />} />
         <Route path="/user" element={<UserPage />} />
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/login" element={<LoginPage login={loginProtocol} />} />
         <Route path="/logout" element={<LogoutPage logout={logoutProtocol} />} />

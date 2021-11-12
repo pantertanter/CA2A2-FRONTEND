@@ -13,10 +13,15 @@ function fetchUserPage(setContent, mounted) {
     fetchData(`${SERVER_URL}/api/info/user`, "GET", setContent, mounted, true);
 }
 
+function fetchAdminPage(setContent, mounted) {
+    fetchData(`${SERVER_URL}/api/info/admin`, "GET", setContent, mounted, true);
+}
+
 const apiFacade = {
     fetchWikipedia,
     fetchDadJokes,
-    fetchUserPage
+    fetchUserPage,
+    fetchAdminPage
 }
 
 export default apiFacade;
