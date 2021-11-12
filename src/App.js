@@ -1,51 +1,49 @@
-import {
-  Navigate,
-  Routes,
-  Route,
-  useNavigate
-} from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import userFacade from "./auth/userFacade";
 import Header from "./components/Header";
+
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
+import WikipediaPage from "./pages/WikipediaPage";
+import DadJokePage from "./pages/DadJokePage";
 import NoMatchPage from "./pages/NoMatchPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
-import { useState } from "react";
-import loginFacade from "./auth/loginFacade";
-import WikipediaPage from "./pages/WikipediaPage";
-import DadJokePage from "./pages/DadJokePage";
 
 function App() {
+  const { login, logout, loggedIn, getUser } = userFacade();
   // I don't know how this will work with token expiration. You might just stay logged in but can't contact backend.
-  const [loggedIn, setLoggedIn] = useState(loginFacade.loggedIn());
-  const [user, setUser] = useState(loginFacade.getUser());
+  const [loggedInState, setLoggedInState] = useState(loggedIn());
+  const [userState, setUserState] = useState(getUser());
   const navigate = useNavigate();
 
-  const logout = () => {
-    loginFacade.logout()
-    setLoggedIn(false);
-    setUser('');
+  function logoutProtocol() {
+    logout();
+    setLoggedInState(false);
+    setUserState(null);
     navigate("/");
   }
-  const login = (user, pass) => {
-    loginFacade.login(user, pass)
+
+  function loginProtocol(user, pass) {
+    login(user, pass)
       .then(res => {
-        setUser(loginFacade.getUser())
-        setLoggedIn(true);
+        setUserState(getUser())
+        setLoggedInState(true);
         navigate("/");
       });
   }
 
   return (
     <div>
-      <Header loggedIn={loggedIn} user={user} />
+      <Header loggedIn={loggedInState} user={userState} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/wikipedia" element={<WikipediaPage />} />
         <Route path="/dadjokes" element={<DadJokePage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/login" element={<LoginPage login={login} />} />
-        <Route path="/logout" element={<LogoutPage logout={logout} />} />
+        <Route path="/login" element={<LoginPage login={loginProtocol} />} />
+        <Route path="/logout" element={<LogoutPage logout={logoutProtocol} />} />
         <Route path="*" element={<NoMatchPage />} />
       </Routes>
     </div>

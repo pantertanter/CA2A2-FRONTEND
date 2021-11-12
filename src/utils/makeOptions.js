@@ -1,6 +1,7 @@
-import loginFacade from "../auth/loginFacade";
+import tokenUtil from "../auth/tokenUtil";
 
 export default function makeOptions(method, addToken, body) {
+    const {getToken, loggedIn} = tokenUtil();
     var opts = {
         method: method,
         headers: {
@@ -8,8 +9,8 @@ export default function makeOptions(method, addToken, body) {
             'Accept': 'application/json',
         }
     }
-    if (addToken && loginFacade.loggedIn()) {
-        opts.headers["x-access-token"] = loginFacade.getToken();
+    if (addToken && loggedIn()) {
+        opts.headers["x-access-token"] = getToken();
     }
     if (body) {
         opts.body = JSON.stringify(body);
