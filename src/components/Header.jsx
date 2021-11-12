@@ -20,6 +20,10 @@ export default function Header({ loggedIn, user }) {
             <li><NavLink
                 className={isActive}
                 to="/about">About</NavLink></li>
+            {user != null && user.roles.includes("user") &&
+                <li><NavLink
+                    className={isActive}
+                    to="/user">User page</NavLink></li>}
             <div className="header_right">
                 {loggedIn
                     ? <div>

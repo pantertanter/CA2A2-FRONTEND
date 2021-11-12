@@ -2,6 +2,7 @@ import tokenUtil from "../auth/tokenUtil";
 
 export default function makeOptions(method, addToken, body) {
     const { getToken, loggedIn } = tokenUtil();
+    const token = getToken();   // not null when logged in
     var opts = {
         method: method,
         headers: {
@@ -9,7 +10,7 @@ export default function makeOptions(method, addToken, body) {
             'Accept': 'application/json',
         }
     }
-    if (addToken && loggedIn()) opts.headers["x-access-token"] = getToken();
+    if (addToken && token) opts.headers["x-access-token"] = token;
     if (body) opts.body = JSON.stringify(body);
 
     return opts;
