@@ -1,7 +1,7 @@
 import tokenUtil from "../auth/tokenUtil";
 
 export default function makeOptions(method, addToken, body) {
-    const { getToken, loggedIn } = tokenUtil();
+    const { getToken } = tokenUtil();
     const token = getToken();   // not null when logged in
     var opts = {
         method: method,
