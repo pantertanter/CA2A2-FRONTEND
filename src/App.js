@@ -13,6 +13,7 @@ import LogoutPage from "./pages/LogoutPage";
 import { useState } from "react";
 import loginFacade from "./auth/loginFacade";
 import WikipediaPage from "./pages/WikipediaPage";
+import DadJokePage from "./pages/DadJokePage";
 
 function App() {
   // I don't know how this will work with token expiration. You might just stay logged in but can't contact backend.
@@ -41,6 +42,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/wikipedia" element={<WikipediaPage />} />
+        <Route path="/dadjokes" element={<DadJokePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/login" element={<LoginPage login={login} />} />
         <Route path="/logout" element={<LogoutPage logout={logout} />} />

@@ -15,6 +15,9 @@ function Header({ loggedIn, user }) {
                 to="/wikipedia">Wikipedia</NavLink></li>
             <li><NavLink
                 className={isActive}
+                to="/dadjokes">Dad jokes</NavLink></li>
+            <li><NavLink
+                className={isActive}
                 to="/about">About</NavLink></li>
             <div className="header_right">
                 {loggedIn

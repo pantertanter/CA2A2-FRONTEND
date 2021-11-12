@@ -5,8 +5,13 @@ function fetchWikipedia(setArticles) {
     fetchData(`${SERVER_URL}/api/info/sequential`, "GET", setArticles);
 }
 
+function fetchDadJokes(setJokes) {
+    fetchData(`${SERVER_URL}/api/info/parallel`, "GET", setJokes);
+}
+
 const apiFacade = {
-    fetchWikipedia
+    fetchWikipedia,
+    fetchDadJokes
 }
 
 export default apiFacade;
