@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 
-function Header({ loggedIn, user }) {
+export default function Header({ loggedIn, user }) {
+
     function isActive({ isActive }) {
         return isActive ? "active" : "";
     }
@@ -31,7 +32,3 @@ function Header({ loggedIn, user }) {
         </ul>
     );
 }
-
-export default Header;
-
-/* Could be two separate lists in two components, and the Header contains both. */

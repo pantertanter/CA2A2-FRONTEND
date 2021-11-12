@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import apiFacade from "../apiFacade";
 import { Col, Row } from "react-bootstrap";
 
-function WikipediaPage() {
+export default function WikipediaPage() {
     const [articles, setArticles] = useState();
     const mounted = useRef(true);
 
@@ -22,7 +22,7 @@ function WikipediaPage() {
                     <a href={a.url} target="_blank" rel="noopener noreferrer">{a.url}</a>
                 </Col>
                 <Col>
-                    <img src={t.source} width={t.width} height={t.height} />
+                    <img alt={a.title} src={t.source} width={t.width} height={t.height} />
                 </Col>
             </Row>
         )
@@ -35,5 +35,3 @@ function WikipediaPage() {
         </div>
     );
 }
-
-export default WikipediaPage;

@@ -11,14 +11,14 @@ import NoMatchPage from "./pages/NoMatchPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
 
-function App() {
+export default function App() {
+  const navigate = useNavigate();
   const { login, logout, loggedIn, getUser } = userFacade();
-  // I don't know how this will work with token expiration. You might just stay logged in but can't contact backend.
   const [loggedInState, setLoggedInState] = useState(loggedIn());
   const [userState, setUserState] = useState(getUser());
-  const navigate = useNavigate();
 
   function logoutProtocol() {
+    if (!loggedInState) return;
     logout();
     setLoggedInState(false);
     setUserState(null);
@@ -26,6 +26,7 @@ function App() {
   }
 
   function loginProtocol(user, pass) {
+    if (loggedInState) return;
     login(user, pass)
       .then(res => {
         setUserState(getUser())
@@ -49,5 +50,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

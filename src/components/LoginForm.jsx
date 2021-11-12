@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Button, Form, FormControl } from "react-bootstrap";
 
-export default function LoginForm({login}) {
+export default function LoginForm({ login }) {
     const [username, setUsernameValue] = useState();
     const [password, setPasswordValue] = useState();
 
-    const clickLogin = (evt) => {
-        evt.preventDefault();
+    function clickLogin(event) {
+        event.preventDefault();
         login(username, password);
     }
 

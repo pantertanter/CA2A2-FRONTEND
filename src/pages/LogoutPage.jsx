@@ -1,9 +1,4 @@
-import { useEffect } from "react";
-
-function Logout({ logout }) {
-    useEffect(logout, []);
-
+export default function Logout({ logout }) {
+    logout();
     return null;
 }
-
-export default Logout;
