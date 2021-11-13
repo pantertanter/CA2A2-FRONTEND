@@ -10,7 +10,8 @@ export default function PrivateNavItem({ to, text, allowedRole, user }) {
     }
 
     return (
-        isAllowed() && <li><NavLink
+        isAllowed() && <li>
+            <NavLink
             className={isActive}
             to={to} end>{text}</NavLink>
         </li>

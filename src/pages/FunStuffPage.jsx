@@ -63,7 +63,7 @@ function FunStuffPage() {
 
     return (
         <>
-            <p><i>These are fetched in parallel.</i></p>
+            <p><i>These are fetched in parallel. This page is accessible for any role.</i></p>
             {fun
                 ? <FunStuff content={fun} />
                 : <p>Loading...</p>}
