@@ -14,6 +14,7 @@ import AdminPage from "./pages/AdminPage";
 import NoMatchPage from "./pages/NoMatchPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
+import FunStuffPage from "./pages/FunStuffPage";
 
 
 export default function App() {
@@ -49,6 +50,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/wikipedia" element={<WikipediaPage />} />
           <Route path="/dadjokes" element={<DadJokePage />} />
+          <Route path="/funstuff" element={<FunStuffPage />} />
           <Route path="/user" element={<UserPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/about" element={<AboutPage />} />

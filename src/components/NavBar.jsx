@@ -17,6 +17,9 @@ export default function NavBar({ loggedIn, user }) {
             <li><NavLink
                 className={isActive}
                 to="/dadjokes">Dad jokes</NavLink></li>
+            <li><NavLink
+                className={isActive}
+                to="/funstuff">Fun stuff!</NavLink></li>
             {loggedIn && user.roles.includes("user") &&
                 <li><NavLink
                     className={isActive}
