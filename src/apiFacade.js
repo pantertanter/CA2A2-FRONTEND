@@ -9,6 +9,10 @@ function fetchDadJokes(setJokes, mounted) {
     fetchData(`${SERVER_URL}/api/info/parallel`, "GET", setJokes, mounted);
 }
 
+function fetchFunStuff(setFun, mounted) {
+    fetchData(`${SERVER_URL}/api/info/jokes`, "GET", setFun, mounted);
+}
+
 function fetchUserPage(setContent, mounted) {
     fetchData(`${SERVER_URL}/api/info/user`, "GET", setContent, mounted, true);
 }
@@ -20,6 +24,7 @@ function fetchAdminPage(setContent, mounted) {
 const apiFacade = {
     fetchWikipedia,
     fetchDadJokes,
+    fetchFunStuff,
     fetchUserPage,
     fetchAdminPage
 }
