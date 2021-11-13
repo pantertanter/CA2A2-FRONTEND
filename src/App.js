@@ -25,14 +25,12 @@ export default function App() {
 
   function logoutProtocol() {
     if (loggedInState) setLoggedInState(false);
-    console.log("logout");
     logout();
     setUserState(null);
     navigate("/");
   }
 
   function loginProtocol(user, pass) {
-    console.log("login");
     login(user, pass)
       .then(res => {
         setUserState(res);
@@ -42,13 +40,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    const isLoggedIn = loggedIn();
-    if (!isLoggedIn || !loggedInState) {
-      console.log("not logged in! ", "token:", isLoggedIn, "state:", loggedInState);
-      if (loggedInState) { console.log("auto logout"); logoutProtocol(); }
-    } else {
-      console.log("logged in! ", "token:", isLoggedIn, "state:", loggedInState);
-    }
+    if (!loggedIn() && loggedInState) logoutProtocol();
   });
 
   return (
