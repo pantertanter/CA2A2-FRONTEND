@@ -20,11 +20,11 @@ export default function NavBar({ loggedIn, user }) {
             {loggedIn && user.roles.includes("user") &&
                 <li><NavLink
                     className={isActive}
-                    to="/user">User page</NavLink></li>}
+                    to="/user">user page</NavLink></li>}
             {loggedIn && user.roles.includes("admin") &&
                 <li><NavLink
                     className={isActive}
-                    to="/admin">Admin page</NavLink></li>}
+                    to="/admin">admin page</NavLink></li>}
             <li><NavLink
                 className={isActive}
                 to="/about">About</NavLink></li>

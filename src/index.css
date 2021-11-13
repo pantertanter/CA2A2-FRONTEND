@@ -33,6 +33,9 @@
         padding: 14px 16px;
         text-decoration: none;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        -webkit-transition: background-color 200ms ease-in-out;
+        -ms-transition: background-color 200ms ease-in-out;
+        transition: background-color 200ms ease-in-out;
     }
 
     ul.header li .userInfo {
