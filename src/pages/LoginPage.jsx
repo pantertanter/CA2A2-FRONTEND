@@ -5,5 +5,6 @@ export default function LoginPage({ login }) {
         <>
             <h2 align="center">Sign in</h2>
             <LoginForm login={login} />
-        </>);
+        </>
+    );
 }

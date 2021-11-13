@@ -23,8 +23,7 @@ export default function tokenUtil() {
         return JSON.parse(Buffer.from(encodedPayload, 'base64'));
     }
 
-    function getUserFromToken() {
-        const token = getToken();
+    function getUserFromToken(token) {
         if (!token) return null;
         const { username, roles } = getPayloadFromToken(token);
         const rolesArray = roles.split(",");

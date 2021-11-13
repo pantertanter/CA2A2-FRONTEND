@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
 
-export default function LoginNavItems({ user, loggedIn }) {
+export default function NavLoginItem({ user, loggedIn }) {
     function isActive({ isActive }) {
         return isActive ? "activeNavItem" : "";
     }
 
-    return (<div className="navBarRight">
+    return (<div className="navLoginItem">
         {loggedIn
             ? <div>
                 <li><span className="userInfo">{user.username}</span> <span className="badge bg-primary rounded-pill">{user.roles.join(", ")}</span></li>
