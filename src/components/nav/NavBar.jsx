@@ -1,7 +1,7 @@
 
 import NavItem from "./NavItem";
 import PrivateNavItem from "./PrivateNavItem";
-import LoginNavItems from "./LoginNavItems";
+import NavLoginItem from "./NavLoginItem";
 
 export default function NavBar({ loggedIn, user }) {
 
@@ -11,10 +11,10 @@ export default function NavBar({ loggedIn, user }) {
             <NavItem to="/wikipedia" text="Wikipedia" />
             <NavItem to="/dadjokes" text="Dad jokes" />
             <PrivateNavItem to="/funstuff" text="Fun stuff!" allowedRole="any" user={user} />
-            <PrivateNavItem to="/user" text="user page" allowedRole="user" user={user} />
-            <PrivateNavItem to="admin" text="admin page" allowedRole="admin" user={user} />
+            <PrivateNavItem to="/user" text="User page" allowedRole="user" user={user} />
+            <PrivateNavItem to="admin" text="Admin page" allowedRole="admin" user={user} />
             <NavItem to="/about" text="About" />
-            <LoginNavItems user={user} loggedIn={loggedIn} />
+            <NavLoginItem user={user} loggedIn={loggedIn} />
         </ul>
     );
 }

@@ -11,19 +11,32 @@ export default function userFacade() {
         const options = makeOptions("POST", false, { username: user, password: pass });
         return fetch(URL, options)
             .then(handleHttpErrors)
-            .then(res => { setToken(res.token); });
+            .then(res => {
+                setToken(res.token);
+                return getUserFromToken(res.token);
+            }).catch(err => {
+                console.log(err);
+                return null;
+            });
     }
 
     function logout() {
         setToken(null);
     }
 
-    function loggedIn() {
-        return !!getToken();
+    function loggedIn(_token) {
+        let isLoggedIn;
+        try {
+            const token = (_token) ? _token : getToken();
+            isLoggedIn = !!token;
+        }
+        catch (err) { isLoggedIn = false; }
+        return isLoggedIn;
     }
 
-    function getUser() {
-        return loggedIn ? getUserFromToken() : null;
+    function getUser(_token) {
+        const token = (_token) ? _token : getToken();
+        return loggedIn(token) ? getUserFromToken(token) : null;
     }
 
     return {

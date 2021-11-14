@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import userFacade from "./auth/userFacade";
 import NavBar from "./components/nav/NavBar";
@@ -24,25 +24,27 @@ export default function App() {
   const [userState, setUserState] = useState(getUser());
 
   function logoutProtocol() {
-    if (!loggedInState) return;
+    if (loggedInState) setLoggedInState(false);
     logout();
-    setLoggedInState(false);
     setUserState(null);
     navigate("/");
   }
 
   function loginProtocol(user, pass) {
-    if (loggedInState) return;
     login(user, pass)
       .then(res => {
-        setUserState(getUser())
-        setLoggedInState(true);
+        setUserState(res);
+        if (!loggedInState) setLoggedInState(true);
         navigate("/");
       });
   }
 
+  useEffect(() => {
+    if (!loggedIn() && loggedInState) logoutProtocol();
+  });
+
   return (
-    <Container fluid="sm" className="heroNavContent">
+    <Container fluid="sm" className="wrapper">
       <Hero />
       <NavBar loggedIn={loggedInState} user={userState} />
       <Container className="pageContent pt-3 pb-3" fluid="sm">

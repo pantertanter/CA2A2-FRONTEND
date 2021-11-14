@@ -22,7 +22,7 @@
         float: left;
     }
     
-    .navBar div.navBarRight {
+    .navBar .navLoginItem {
         float: right;
     }
     
@@ -59,7 +59,7 @@
         transition: background-color 200ms ease-in-out;
     }
     
-    .activeNavItem {
+    .navBar li .activeNavItem {
         background-color: #4CAF50;
         -webkit-transition: background-color 200ms ease-in-out;
         -ms-transition: background-color 200ms ease-in-out;
@@ -78,7 +78,7 @@
         background-image: url("img/bg/prism.png");
     }
     
-    .heroNavContent {
+    .wrapper {
         max-width: 960px !important;
         min-height: 100vh;
         padding: 0 !important;
