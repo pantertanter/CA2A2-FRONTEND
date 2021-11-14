@@ -1,0 +1,32 @@
+Readme CA2A2 Single Page application frontend startcode
+
+Home:
+	Content from homr goes here.
+
+Wikipedia:
+
+	These are fetched sequentially
+
+	Loading
+
+Dad jokes:
+
+	These a fetchedin parralel
+
+	Loading...
+
+About:
+
+	About us
+
+	Content about us goes here.
+
+Sign in:
+
+	Sign in
+
+	username
+
+	password
+
+	Sign in
