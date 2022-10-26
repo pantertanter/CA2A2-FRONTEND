@@ -1,3 +1,3 @@
-const SERVER_URL = "http://komputerkomputer.dk:8080/startcode-1.0.1";
+const SERVER_URL = "http://localhost:8080/startcode_war_exploded";
 
 export { SERVER_URL };

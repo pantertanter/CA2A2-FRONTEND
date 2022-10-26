@@ -6,7 +6,7 @@ function fetchWikipedia(setArticles, mounted) {
 }
 
 function fetchDadJokes(setJokes, mounted) {
-    fetchData(`${SERVER_URL}/api/info/parallel`, "GET", setJokes, mounted);
+    fetchData(`${SERVER_URL}api/info/parallel`, "GET", setJokes, mounted);
 }
 
 function fetchFunStuff(setFun, mounted) {
